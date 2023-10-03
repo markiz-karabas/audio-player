@@ -7,7 +7,7 @@ const player = document.querySelector('.player'),
       progressBox = document.querySelector('.progress-box'),
       progress = document.querySelector('.progress'),
       cover = document.querySelector('.cover__img'),
-      btnSrc = document.querySelector('.btn-src');
+      btnSrc = document.querySelector('.btn-src__icon');
 //названия треков
 const songs = ['MindInABox - I Knew', 'Third Realm - Sleeping Beauty','Velvet Acid Christ - Grey'];
 //трек по умолчанию
@@ -24,12 +24,13 @@ loadSong(songs[songIndex]);
 function playSong() {
     audio.play();
     player.classList.add('active');
-
+    btnSrc.src = './assets/svg/pause.png';
 }
 //pause
 function pauseSong() {
     audio.pause();
     player.classList.remove('active');
+    btnSrc.src = './assets/svg/play.png';
 }
 //nextSong
 function nextSong() {
@@ -49,6 +50,21 @@ function prevSong() {
     loadSong(songs[songIndex]);
     playSong();
 }
+//progress-bar
+function updateProgress(event) {
+    const {duration, currentTime} = event.srcElement;
+    const progressPercent = (currentTime / duration) * 100;
+    progress.style.width = `${progressPercent}%`;
+
+}
+function setProgress(event) {
+    const widthTotal = this.clientWidth;
+    const widthClick = event.offsetX;
+    const duration = audio.duration;
+    audio.currentTime = widthClick / widthTotal * duration;
+}
+
+
 //eventlisteners
 btnPlay.addEventListener('click', () => {
     const isPlaying = player.classList.contains('active');
@@ -60,3 +76,6 @@ btnPlay.addEventListener('click', () => {
 })
 btnNext.addEventListener('click', nextSong);
 btnPrev.addEventListener('click', prevSong);
+audio.addEventListener('timeupdate', updateProgress); //индикация
+progressBox.addEventListener('click', setProgress); //перемотка
+audio.addEventListener('ended', nextSong); //auto-play
