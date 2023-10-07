@@ -7,37 +7,72 @@
 .wrapper {
     height: 100vh;
     width: 100%;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(41, 41, 41);
+    /*background-color: rgb(41, 41, 41);*/
+    background-image: url(./assets/img/cover-1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.filter {
+    height: 100vh;
+    width: 100%;
+    padding: 0 20px;
+    backdrop-filter: brightness(20%);
+}
+.main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.title {
+    color: rgb(227, 81, 41);
+    font-size: 2rem;
+    width: max-content;
+    margin: 10px auto 30px;
+    font-weight: normal;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    letter-spacing: 0.7px;
 }
 .player {
     background-color: rgb(135, 135, 135);
     border-radius: 30px;
-    margin: 40px auto;
-    padding: 60px 0;
-    width: 30%;
+    margin: 0 auto;
+    padding: 40px 0 20px;
+    width: 380px;
+    height: 520px;
     height: max-content;
 }
 .cover {
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
 }
 .cover__img {
     display: block;
     width: 100%;
 }
-.song {
-    width: 70%;
-    margin: 20px auto;
+.performer {
+    width: 80%;
+    margin: 5px auto;
     font-size: 18px;
     text-align: center;
     font-weight: 600;
+
+}
+.track {
+    width: 80%;
+    margin: 5px auto;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 400;
 }
 .progress-box {
-    margin: 20px auto;
-    width: 70%;
+    margin: 20px auto 5px;
+    width: 80%;
     padding: 1px 0;
     cursor: pointer;
     background-color: rgba(69, 67, 67, 0.237);
@@ -45,13 +80,26 @@
 }
 .progress {
     height: 10px;
-    background-color: rgb(61, 60, 60);
+    background-color: rgb(162, 49, 5);
     border-radius: 10px;
     width: 0;
 }
+.time-line {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto 8px;
+}
+.time-line__start {
+    display: block;
+
+}
+.time-line__end {
+    display: block;
+}
 .buttons-box {
     display: flex;
-    gap: 30px;
+    gap: 26px;
     justify-content: center;
     align-items: center;
 }
@@ -61,7 +109,7 @@
     cursor: pointer;
 }
 .btn:hover {
-    background-color: rgb(117, 112, 112);
+    background-color: rgb(102, 97, 97);
     border-radius: 50%;
 }
 .btn-src__icon{
