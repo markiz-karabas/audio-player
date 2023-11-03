@@ -2,7 +2,7 @@ const player = document.querySelector('.player'),
       btnPlay = document.querySelector('.btn-play'),
       btnPrev = document.querySelector('.btn-prev'),
       btnNext = document.querySelector('.btn-next'),
-      performer = document.querySelector('.performer'),
+      artist = document.querySelector('.artist'),
       trackName = document.querySelector('.track'),
       audio = document.querySelector('.audio'),
       progressBox = document.querySelector('.progress-box'),
@@ -14,16 +14,17 @@ const player = document.querySelector('.player'),
       wrapper = document.querySelector('.wrapper');
 //массив треков
 const tracks = [
-    {id: 1, performer: 'MindInABox', track: 'I Knew', link: './assets/audio/MindInABox - I Knew.mp3'},
-    {id: 2, performer: 'Third Realm', track: 'Sleeping Beauty', link: './assets/audio/Third Realm - Sleeping Beauty.mp3'},
-    {id: 3, performer: 'Velvet Acid Christ', track: 'The Colors of My Sadness', link: './assets/audio/Velvet Acid Christ -The Colors of My Sadness.mp3'},
-    {id: 4, performer: 'SIDXKICK', track: 'Боюсь темноты', link: './assets/audio/SIDXKICK - Boyus temnoty.mp3'},
+    {id: 1, artist: 'MindInABox', track: 'I Knew', link: './assets/audio/MindInABox - I Knew.mp3'},
+    {id: 2, artist: 'Third Realm', track: 'Sleeping Beauty', link: './assets/audio/Third Realm - Sleeping Beauty.mp3'},
+    {id: 3, artist: 'Velvet Acid Christ', track: 'The Colors of My Sadness', link: './assets/audio/Velvet Acid Christ -The Colors of My Sadness.mp3'},
+    {id: 4, artist: 'SIDXKICK', track: 'Боюсь темноты', link: './assets/audio/SIDXKICK - Boyus temnoty.mp3'},
+    {id: 5, artist: 'Бони НЕМ', track: 'Этого мало', link: './assets/audio/Boni Nem - Etogo-malo.mp3'},
 ];
 //трек по умолчанию
 let trackIndex = 0;
 //init
 function loadSong(track) {
-    performer.innerHTML = tracks[trackIndex].performer;
+    artist.innerHTML = tracks[trackIndex].artist;
     trackName.innerHTML = tracks[trackIndex].track;
     audio.src = tracks[trackIndex].link;
     cover.src = `./assets/img/cover-${trackIndex + 1}.jpg`;
@@ -33,13 +34,14 @@ loadSong(tracks[trackIndex]);
 //play
 function playSong() {
     audio.play();
-    player.classList.add('active');
+    player.classList.toggle('active');
     btnSrc.src = './assets/svg/pause.png';
 }
 //pause
 function pauseSong() {
     audio.pause();
-    player.classList.remove('active');
+    player.classList.toggle('active');
+    //player.classList.remove('active');
     btnSrc.src = './assets/svg/play.png';
 }
 //nextSong
