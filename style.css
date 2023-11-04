@@ -112,9 +112,6 @@
     background-color: rgb(102, 97, 97);
     border-radius: 50%;
 }
-.btn-src__icon{
-
-}
 .btn-icon {
     display: block;
     width: 100%;
@@ -123,4 +120,12 @@
 .btn-prev {
     width: 80px;
     height: 80px;
+}
+@media (max-width: 420px) {
+    .player {
+        width: 330px;
+    }
+    .buttons-box {
+        gap: 10px;
+    }
 }

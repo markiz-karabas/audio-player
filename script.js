@@ -12,6 +12,7 @@ const player = document.querySelector('.player'),
       cover = document.querySelector('.cover__img'),
       btnSrc = document.querySelector('.btn-src__icon'),
       wrapper = document.querySelector('.wrapper');
+let duration = 0   
 //массив треков
 const tracks = [
     {id: 1, artist: 'MindInABox', track: 'I Knew', link: './assets/audio/MindInABox - I Knew.mp3'},
@@ -31,6 +32,7 @@ function loadSong(track) {
     wrapper.style.backgroundImage = `url(./assets/img/cover-${trackIndex + 1}.jpg)`;
 }
 loadSong(tracks[trackIndex]);
+updateTimeLine();
 //play
 function playSong() {
     audio.play();
@@ -77,28 +79,30 @@ function setProgress(event) {
 //updateTimeLine
 
 function updateTimeLine(event) {
-    let audioDuration = audio.duration;
     let currentTime = audio.currentTime;
+    let audioDuration = audio.duration - audio.currentTime;
     
-    const totalMin = Math.floor(audioDuration / 60);
-    const totalSec = Math.floor(audioDuration % 60);
+    let totalMin = Math.floor(audioDuration / 60);
+    let totalSec = Math.floor(audioDuration % 60);
     if (totalSec < 10) {
         totalSec = `0${totalSec}`; 
     }
+    console.log(audioDuration) //не понимаю почему NaN ???
     timeEnd.innerHTML = `${totalMin}:${totalSec}`;
 
 
-    const currentMin = Math.floor(currentTime / 60);
-    const currentSec = Math.floor(currentTime % 60);
+    let currentMin = Math.floor(currentTime / 60);
+    let currentSec = Math.floor(currentTime % 60);
     if (currentSec < 10) {
         currentSec = `0${currentSec}`; 
     }
-    console.log(currentTime);
+    
     timeStart.innerHTML = `${currentMin}:${currentSec}`;
 }
 //eventlisteners
-
+window.addEventListener('load', updateTimeLine);
 btnPlay.addEventListener('click', () => {
+    
     const isPlaying = player.classList.contains('active');
     if (isPlaying) {
         pauseSong();
